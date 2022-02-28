@@ -16,3 +16,23 @@
 
 * 元组  元组就是固定长度的数组 
   
+
+
+## 编译选项  文件热更新
+
+* 热更新编译  tsc xxx.ts -w
+* 使用 tsc -init  初始化 tsconfig.json文件，进行编译配置
+* 关于 tsconfig.json里的知识
+  1. include用于指定哪些文件被编译  **表示任意文件夹 *表示任意文件
+  2. exclude用于取反，不被编译 exclude有默认值 ['node_modules']
+  3.  compilerOptions
+      1.   "target": "ES3"// 目标 编译到对应的js版本
+      2.   "module": 指定使用哪种模块化方案
+      3.   "lib": 使用的库 （可选数组）
+      4.   "outDir": 用于指定编译后的js文件输出存放的位置目录
+      5.   "outFile": 用于将输出的代码合并为一个文件
+      6.   "allowJs": false   是否编译目标文件夹下的js文件，默认为false
+      7.   "checkJs": false 是否检测js文件是否符合ts语法，默认false
+      8.   "removeComments": true  编译是否移除注释
+      9.   "noEmit": true  不生成编译后的文件
+      10.  "noEmitOnError": true 当有错误时不生成编译文件 
