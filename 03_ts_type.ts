@@ -78,3 +78,28 @@ let arr2: Array<string>
 arr2 = ['2', '34']
 
 
+// 元组 元组就是固定长度的数组
+let brr2: [string, number]
+brr2 = ['123', 22]
+
+// enum 枚举
+// 定义枚举
+enum Gender {
+  male = 1,
+  female = 0
+}
+
+let mySelf = {
+  name: 'yip',
+  gender: Gender.male
+}
+
+console.log(mySelf)
+
+
+// 设置变量名
+
+type myType = 1 | 2 | 3 | 4 | 5
+
+let testType: myType
+testType = 2
