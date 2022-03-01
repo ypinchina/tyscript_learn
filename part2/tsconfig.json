@@ -3,7 +3,9 @@
   "exclude": ["./src/exmodule/**/*"],
   "compilerOptions": {
     // 编译器配置
-    "target": "ES3"
+    "target": "ES3",
     // 目标 编译到对应的js版本
+    "noImplicitAny": true,
+    "strictNullChecks": false
   }
 }

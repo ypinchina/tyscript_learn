@@ -36,3 +36,8 @@
       8.   "removeComments": true  编译是否移除注释
       9.   "noEmit": true  不生成编译后的文件
       10.  "noEmitOnError": true 当有错误时不生成编译文件 
+      11.  "alwaysStrict": false 编译使用严格模式 默认为打开 true
+      12.  "noImplicitAny":  不允许隐式的any类型
+      13.  "noImplicitThis": false 不允许不明确指向的this
+      14.  "strictNullChecks": false 严格的空值检查，检查一个变量是否有可能为空的报错
+      15.  "strict": false  以上所有及等严格检查的总开关
