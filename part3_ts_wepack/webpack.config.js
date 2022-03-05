@@ -1,4 +1,5 @@
 const path = require('path')
+const htmlWebpackPlugin = require('html-webpack-plugin')
 // 引入一个包
 module.exports = {
   entry: './src/index.ts',
@@ -16,5 +17,13 @@ module.exports = {
       exclude: /node_modules/
     }]
     // 指定规则
+  },
+  plugins: [
+    new htmlWebpackPlugin({
+      template: './src/index.html'
+    })
+  ],
+  resolve: {
+    extensions: ['.ts', '.js']
   }
 }
