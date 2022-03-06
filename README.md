@@ -60,3 +60,9 @@
     class Cat implements Animals {
       
     }
+
+# 贪吃蛇游戏开发
+
+使用stylus
+
+为了浏览器能兼容css3 使用postcss postcss-loader postcss-preset-env 来进行增加属性前缀

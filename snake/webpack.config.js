@@ -9,8 +9,10 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
     environment: {
-      arrowFunction: false
+      arrowFunction: false,
       // 打包出来的js不使用箭头函数
+      const: false
+      // 关闭const 兼容ie10
     }
   },
   module: {
@@ -46,6 +48,23 @@ module.exports = {
         ],
         exclude: /node_modules/,
       },
+      {
+        test: /\.styl$/,
+        use: ['style-loader', 'css-loader', {
+          loader: 'postcss-loader',
+          options: {
+            postcssOptions: {
+              plugins: [[
+                'postcss-preset-env',
+                {
+                  browsers: 'last 2 versions'
+                  // 最近浏览器的两个版本的兼容
+                }
+              ]]
+            }
+          }
+        }, 'stylus-loader']
+      }
     ],
     // 指定规则
   },

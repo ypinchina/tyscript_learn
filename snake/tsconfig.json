@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "module": "ES2015",
+    // 编译器配置
+    "target": "ES2015",
+    // 编译目标
+    "strict": true,
+    // 完全严格模式
+    "noEmitOnError": true
+    // 当有错误时不编译文件
+  }
+}
