@@ -41,3 +41,22 @@
       13.  "noImplicitThis": false 不允许不明确指向的this
       14.  "strictNullChecks": false 严格的空值检查，检查一个变量是否有可能为空的报错
       15.  "strict": false  以上所有及等严格检查的总开关
+## 类的学习
+
+    // 抽象类即是在class关键字前面加abstract的类
+    // 抽象类只用于继承，不能用于创建实例
+
+    抽象方法只能在抽象类中定义，抽象方法没有方法体，需要子类实现和重载
+
+
+
+    接口interface和type的区别 interface可以重复声明，两个同名接口会混入一起合并
+
+
+    接口只用于定义类的接口，里面所有的方法都不能有方法体，属性也没属性值，都只有定义，没有实现
+    而抽象类中，可以由抽象方法也可以有普通方法
+
+    类使用implements对早已定义好的接口进行实现
+    class Cat implements Animals {
+      
+    }
