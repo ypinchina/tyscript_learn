@@ -5,9 +5,9 @@ import Snake from '../modules/snake'
 class GameControl {
   food: Food
   scorePanel: ScorePanel
-  snake: Snake 
-  removeDirect:string = '' // 监听键盘事件的方向按键从而得到蛇蛇移动方向
-  isLive:boolean = true  // 蛇蛇是否存活， 撞墙或者撞到自己身体则游戏结束
+  snake: Snake
+  removeDirect: string = '' // 监听键盘事件的方向按键从而得到蛇蛇移动方向
+  isLive: boolean = true  // 蛇蛇是否存活， 撞墙或者撞到自己身体则游戏结束
 
   constructor() {
     // 初始化三个实例
@@ -39,28 +39,48 @@ class GameControl {
     // 获取蛇蛇当前的X,Y坐标
     let X = this.snake.X
     let Y = this.snake.Y
-    switch(this.removeDirect) {
+    switch (this.removeDirect) {
       case 'ArrowUp':
       case 'Up':
         Y = Y - 10
         break
       case 'ArrowDown':
-        case 'Down':
-          Y = Y + 10
-          break
+      case 'Down':
+        Y = Y + 10
+        break
       case 'ArrowRight':
-        case 'Right':
-          X = X + 10
-          break
+      case 'Right':
+        X = X + 10
+        break
       case 'ArrowLeft':
-        case 'Left':
-          X = X - 10
-          break
+      case 'Left':
+        X = X - 10
+        break
     }
-    this.snake.X = X
-    this.snake.Y = Y
+    this.isEat(X, Y)
+    // 修改了位置之后 检测蛇蛇是否吃到食物
+    try {
+      this.snake.X = X
+      this.snake.Y = Y
+    } catch (error: any) {
+      this.isLive = false
+      // 关闭游戏
+      alert(error.message)
+    }
     this.isLive && setTimeout(this.run.bind(this), 300 - (this.scorePanel.level - 1) * 30)
     // 蛇蛇递归调用走路定时器 蛇存活判断
+  }
+
+  isEat(x: number, y: number): void {
+    // 判断蛇蛇是否吃到食物的方法
+    if (x === this.food.X && this.food.Y === y) {
+      // 加分
+      // 食物位置重置
+      // 蛇蛇身体增加一节
+      this.scorePanel.addScore()
+      this.food.change()
+      this.snake.addBodies()
+    }
   }
 }
 

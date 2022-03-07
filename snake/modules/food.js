@@ -3,12 +3,13 @@ class Food {
     constructor() {
         this.element = document.getElementById('food');
         // ! 非空断言，这个dom不可能为空
+        console.log(this.X, this.Y);
     }
     get X() {
         return this.element.offsetLeft;
     }
     get Y() {
-        return this.element.offsetHeight;
+        return this.element.offsetTop;
     }
     change() {
         // 食物的位置需要随机

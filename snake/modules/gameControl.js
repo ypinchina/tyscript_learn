@@ -48,10 +48,30 @@ class GameControl {
                 X = X - 10;
                 break;
         }
-        this.snake.X = X;
-        this.snake.Y = Y;
+        this.isEat(X, Y);
+        // 修改了位置之后 检测蛇蛇是否吃到食物
+        try {
+            this.snake.X = X;
+            this.snake.Y = Y;
+        }
+        catch (error) {
+            this.isLive = false;
+            // 关闭游戏
+            alert(error.message);
+        }
         this.isLive && setTimeout(this.run.bind(this), 300 - (this.scorePanel.level - 1) * 30);
         // 蛇蛇递归调用走路定时器 蛇存活判断
+    }
+    isEat(x, y) {
+        // 判断蛇蛇是否吃到食物的方法
+        if (x === this.food.X && this.food.Y === y) {
+            // 加分
+            // 食物位置重置
+            // 蛇蛇身体增加一节
+            this.scorePanel.addScore();
+            this.food.change();
+            this.snake.addBodies();
+        }
     }
 }
 export default GameControl;
