@@ -66,3 +66,8 @@
 使用stylus
 
 为了浏览器能兼容css3 使用postcss postcss-loader postcss-preset-env 来进行增加属性前缀
+
+
+as  类型断言
+
+！ 非空断言

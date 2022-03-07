@@ -1,0 +1,57 @@
+import Food from '../modules/food';
+import ScorePanel from '../modules/scorePanel';
+import Snake from '../modules/snake';
+class GameControl {
+    constructor() {
+        this.removeDirect = ''; // 监听键盘事件的方向按键从而得到蛇蛇移动方向
+        this.isLive = true; // 蛇蛇是否存活， 撞墙或者撞到自己身体则游戏结束
+        // 初始化三个实例
+        this.food = new Food();
+        this.scorePanel = new ScorePanel();
+        this.snake = new Snake();
+        this.init();
+        // 游戏开始初始化
+    }
+    init() {
+        // 游戏初始化
+        // 需要事先绑定键盘按键 ，监听用户按键输入方向指令
+        document.addEventListener('keydown', this.keydownHandler.bind(this));
+        this.run();
+    }
+    keydownHandler(event) {
+        // 解耦的键盘回调
+        // 只有8种键盘结果 4种通用上下左右，4种兼容IE的上下左右
+        this.removeDirect = event.key;
+    }
+    run() {
+        // 蛇蛇移动的方法
+        // 蛇蛇会根据按键方向保存记录移动，每次移动10px。这样才能吃到食物
+        // 上移就是top -10 下移就是top +10  左移就是left -10 右移就是left +10
+        // 获取蛇蛇当前的X,Y坐标
+        let X = this.snake.X;
+        let Y = this.snake.Y;
+        switch (this.removeDirect) {
+            case 'ArrowUp':
+            case 'Up':
+                Y = Y - 10;
+                break;
+            case 'ArrowDown':
+            case 'Down':
+                Y = Y + 10;
+                break;
+            case 'ArrowRight':
+            case 'Right':
+                X = X + 10;
+                break;
+            case 'ArrowLeft':
+            case 'Left':
+                X = X - 10;
+                break;
+        }
+        this.snake.X = X;
+        this.snake.Y = Y;
+        this.isLive && setTimeout(this.run.bind(this), 300 - (this.scorePanel.level - 1) * 30);
+        // 蛇蛇递归调用走路定时器 蛇存活判断
+    }
+}
+export default GameControl;
