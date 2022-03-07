@@ -10,7 +10,7 @@ class ScorePanel {
     addScore() {
         // 加分方法
         this.scoreElem.innerHTML = ++this.score + '';
-        if (this.score % 10 === 0 && this.level < this.maxLevel) {
+        if (this.level < this.maxLevel) {
             this.upLevel();
         }
     }

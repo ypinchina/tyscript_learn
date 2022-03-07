@@ -21,6 +21,21 @@ class GameControl {
     keydownHandler(event) {
         // 解耦的键盘回调
         // 只有8种键盘结果 4种通用上下左右，4种兼容IE的上下左右
+        // 以下判断是解决蛇可以掉头的问题
+        // 蛇身长度大于1时才可以禁止掉头
+        if (this.snake.bodies[1] && this.removeDirect === 'ArrowUp' && event.key === 'ArrowDown'
+            || event.key === 'ArrowUp' && this.removeDirect === 'ArrowDown'
+            || event.key === 'ArrowRight' && this.removeDirect === 'ArrowLeft'
+            || event.key === 'ArrowLeft' && this.removeDirect === 'ArrowRight') {
+            return;
+        }
+        // 兼容IE
+        if (this.snake.bodies[1] && this.removeDirect === 'Up' && event.key === 'Down'
+            || event.key === 'Up' && this.removeDirect === 'Down'
+            || event.key === 'Right' && this.removeDirect === 'Left'
+            || event.key === 'Left' && this.removeDirect === 'Right') {
+            return;
+        }
         this.removeDirect = event.key;
     }
     run() {
